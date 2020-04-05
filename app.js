@@ -9,6 +9,81 @@ const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 ​
 const render = require("./lib/htmlRenderer");
+
+console.log("We will be building your team now.  Please complete the follwing fields")
+
+const addEmployee = {
+    type: "list",
+    choices: [
+        "Engineer",
+        "Intern",
+        "I don't want to add any more team members."
+    ],
+    message: "What type of Team Member would you like to add?",
+    name: "employeeChoice"
+    
+}
+
+const managerQuestions =[
+    {
+        type: "input",
+        message: "Manager's name.",
+        name: "managerName"
+    },{
+        type: "input",
+        message: "Please enter manager ID number.",
+        name: "managerID"
+    },{
+        type: "input",
+        message: "Please enter manager's email Address.",
+        name: "managerEmail"
+    },{
+        type: "input",
+        message: "Please enter manager's office phone number.",
+        name: "managerNumber"
+    }
+];
+
+const engineerQuestions = [
+    {
+        type: "input",
+        message: "Please enter engineer's name.",
+        name: "engineerName"
+    },{
+        type: "input",
+        message: "Please enter engineer's ID number.",
+        name: "engineerID"
+    },{
+        type: "input",
+        message: "Please enter engineer's email address.",
+        name: "engineerEmail"
+    },{
+        type: "input",
+        message: "Please enter engineer's GitHub username."
+    }
+];
+
+const internQuestions = [
+    {
+       type: "input",
+       message: "Please enter intern's name.",
+       name: "internName" 
+    },{
+        type: "input",
+        message: "Please enter intern's ID number.",
+        name: "internID"
+    },{
+       type: "input",
+       message: "Please enter intern's email address.",
+       name: "internEmail" 
+    },{
+        type: "input",
+        message: "Please enter inter's school attended.",
+        name: "internSchool"
+    }
+];
+
+
 ​
 ​
 // Write code to use inquirer to gather information about the development team members,
