@@ -17,19 +17,19 @@ const managerQuestions =[
     {
         type: "input",
         message: "Manager's name.",
-        name: "managerName"
+        name: "name"
     },{
         type: "input",
         message: "Please enter manager ID number.",
-        name: "managerID"
+        name: "id"
     },{
         type: "input",
         message: "Please enter manager's email Address.",
-        name: "managerEmail"
+        name: "email"
     },{
         type: "input",
         message: "Please enter manager's office phone number.",
-        name: "managerNumber"
+        name: "office"
     }
 ];
 
@@ -86,8 +86,9 @@ const employeeType = {
 
 function employeeAdd(){
     inquirer.prompt(managerQuestions).then(function(answers){
-        const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerNumber);
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
             employees.push(manager);
+            console.log(manager)
             generateTeam();
 
         function generateTeam(){
@@ -96,12 +97,14 @@ function employeeAdd(){
                     inquirer.prompt(engineerQuestions).then(function(answers){
                     const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
                     employees.push(engineer);
+                    console.log(engineer);
                     generateTeam();
                 });
                 }else if (answers.employeeChoice === "Intern"){
                     inquirer.prompt(internQuestions).then(function(answers){
                     const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
                     employees.push(intern);
+                    console.log(intern);
                     generateTeam();
                 });
                 }else{
