@@ -22,7 +22,7 @@ A employee team builder using node.   inquirer answers are rendered in to an HTM
 
 ## Useage
 
-    node index.js
+    node app.js
 
 ## License
 
