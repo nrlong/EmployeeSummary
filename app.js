@@ -76,46 +76,46 @@ const internQuestions = [
 const employeeType = {
     type: "list",
     choices: [
+        "Manager",
         "Engineer",
         "Intern",
-        "I don't want to add any more team members."
+        "--Quit--"
     ],
     message: "What type of Team Member would you like to add?",
     name: "employeeChoice"  
 }
 
-function employeeAdd(){
-    inquirer.prompt(managerQuestions).then(function(answers){
-        const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
+function generateTeam(){
+    inquirer.prompt(employeeType).then(function(answers){
+        if(answers.employeeChoice === "Engineer"){
+            inquirer.prompt(engineerQuestions).then(function(answers){
+            const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
+            employees.push(engineer);
+            console.log(engineer);
+            generateTeam();
+        });
+        }else if (answers.employeeChoice === "Intern"){
+            inquirer.prompt(internQuestions).then(function(answers){
+            const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+            employees.push(intern);
+            console.log(intern);
+            generateTeam();
+        });
+        }else if (answers.employeeChoice === "Manager"){
+            inquirer.prompt(managerQuestions).then(function(answers){
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
             employees.push(manager);
             console.log(manager)
-            generateTeam();
-
-        function generateTeam(){
-            inquirer.prompt(employeeType).then(function(answers){
-                if(answers.employeeChoice === "Engineer"){
-                    inquirer.prompt(engineerQuestions).then(function(answers){
-                    const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
-                    employees.push(engineer);
-                    console.log(engineer);
-                    generateTeam();
-                });
-                }else if (answers.employeeChoice === "Intern"){
-                    inquirer.prompt(internQuestions).then(function(answers){
-                    const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
-                    employees.push(intern);
-                    console.log(intern);
-                    generateTeam();
-                });
-                }else{
-                    writeToHtml();
-                };
-            });
-        };
-    });
+            generateTeam();  
+        })
+        }else{
+            writeToHtml();
+        }
+    })
 };
 
-employeeAdd();
+
+generateTeam();
 
 function writeToHtml(){
     fs.writeFileSync(outputPath, render(employees), "utf-8"),
