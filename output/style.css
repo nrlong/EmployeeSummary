@@ -1,0 +1,17 @@
+.card {
+    margin: .5rem;
+    background-color: aqua;
+    border-style: outset;
+    border-width: .5rem;
+    border-color: black;
+
+}
+
+.list-group-item{
+    background-color: cadetblue;
+    color: cornsilk;
+}
+
+a{
+    color: crimson;
+}
