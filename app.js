@@ -48,7 +48,8 @@ const engineerQuestions = [
         name: "engineerEmail"
     },{
         type: "input",
-        message: "Please enter engineer's GitHub username."
+        message: "Please enter engineer's GitHub username.",
+        name: "engineerGithub"
     }
 ];
 
@@ -91,13 +92,13 @@ function employeeAdd(){
 
         function generateTeam(){
             inquirer.prompt(employeeType).then(function(answers){
-                if(answers.employeeType === "Engineer"){
+                if(answers.employeeChoice === "Engineer"){
                     inquirer.prompt(engineerQuestions).then(function(answers){
                     const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
                     employees.push(engineer);
                     generateTeam();
                 });
-                }else if (answers.employeeType === "Intern"){
+                }else if (answers.employeeChoice === "Intern"){
                     inquirer.prompt(internQuestions).then(function(answers){
                     const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
                     employees.push(intern);
